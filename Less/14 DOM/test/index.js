@@ -1,0 +1,729 @@
+
+let tasks = [
+    {
+        id: Date.now() + 1,
+        completed: false,
+        text: 'Посмотреть новый урок по JavaScript',
+    },
+    {
+        id: Date.now() + 2,
+        completed: false,
+        text: 'Выполнить тест после урока',
+    },
+    {
+        id: Date.now() + 3,
+        completed: false,
+        text: 'Выполнить ДЗ после урока',
+    },
+    {
+        id: Date.now() + 4,
+        completed: false,
+        text: 'Выполнить ДЗ после урокааааааа',
+    },
+]
+let inText = []
+let newInText = []
+
+
+const bodY = document.querySelector("body")
+
+let isDark = false
+function isDarkTrue() {
+    if (isDark == false) {
+        isDark = true
+        console.log("isDark", isDark)
+    } else {
+        isDark = false
+        console.log("isDark", isDark)
+    }
+
+}
+
+function checkDark() {
+    const taskItemColor3 = document.querySelectorAll(".task-item")
+    const btnDark = document.querySelectorAll("button")
+
+    if (isDark === true) {
+        taskItemColor3.forEach((element) => {
+            //console.log("taskItemColor3", element)
+            element.style.color = "#ffffff"
+        })
+
+        btnDark.forEach((element) => {
+            //console.log("btnDark", element)
+            element.style.border = "1px solid #ffffff";
+
+        })
+
+    } else {
+        taskItemColor3.forEach((element) => {
+            //console.log("taskItemColor3", element)
+            element.style.color = "initial";
+        })
+
+        btnDark.forEach((element) => {
+            //console.log("btnDark", element)
+            element.style.border = "none";
+
+        })
+    }
+}
+
+
+
+
+
+document.addEventListener('keydown', (event) => {
+    //event.preventDefault()
+    console.log(event)
+    const { key } = event
+
+    if (key === 'Tab') {
+        isDarkTrue()
+        //alert(`${key}`)
+        //body.style = "background:#24292E" 
+        // body.classList.toggle(style = "background:#24292E")
+        //bodY.classList.add(bodY.style = "background:#24292E")
+        bodY.classList.toggle('body')
+
+        ////////
+        // const taskItemColor3 = document.querySelectorAll(".task-item")
+        // console.log("taskItemColor3:", taskItemColor3)
+
+        // const btnDark = document.querySelectorAll("button")
+        // console.log("btnDark:", btnDark)
+
+
+
+
+
+        // if (isDark === true) {
+        //     taskItemColor3.forEach((element) => {
+        //         console.log("taskItemColor3", element)
+        //         element.style.color = "#ffffff"
+        //     })
+
+        //     btnDark.forEach((element) => {
+        //         console.log("btnDark", element)
+        //         element.style.border = "1px solid #ffffff";
+
+        //     })
+
+        // } else {
+        //     taskItemColor3.forEach((element) => {
+        //         console.log("taskItemColor3", element)
+        //         element.style.color = "initial";
+        //     })
+
+        //     btnDark.forEach((element) => {
+        //         console.log("btnDark", element)
+        //         element.style.border = "none";
+
+        //     })
+        // }
+        checkDark()
+        /////
+
+
+
+    }
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+// let g = []
+// let j = []
+// tasks.forEach(e => g.push(Object.values(e)))
+// //console.log('g', g)
+// g.forEach(e => j.push(e[2]))
+// console.log('j', j)
+// console.log('g', g)
+
+
+
+
+
+
+
+//--addEventListener('submit'--//
+
+let a = "null"
+const createTaskBlock = document.querySelector(".create-task-block")
+//console.log("createTaskBlock", createTaskBlock)
+
+createTaskBlock.addEventListener('submit', (event) => {
+    // console.log(event)
+    event.preventDefault()
+
+    const { target } = event
+    const taskNameInput = target.taskName
+    const inputValue = taskNameInput.value
+
+    const messBlock = document.querySelector(".error-message-block")
+    const divOne = document.querySelector(".newDiv")
+
+    const testBlock = document.querySelectorAll(".error-message-block")
+    const testBlockLen = testBlock.length
+    console.log("-----inTextFirst------:", inText)
+    let g = []
+    let j = []
+    tasks.forEach(e => g.push(Object.values(e)))
+    //console.log('g', g)
+    g.forEach(e => j.push(e[2]))
+    console.log('j', j)
+    console.log('g', g)
+
+
+
+
+    a = inputValue.trim()
+    a.trim()
+    console.log("A", a)
+
+
+    /////
+
+    // if (isDark === true) {
+    //     taskItemColor3.forEach((element) => {
+    //         console.log("taskItemColor3", element)
+    //         element.style.color = "#ffffff";
+    //     })
+
+    // } else {
+    //     taskItemColor3.forEach((element) => {
+    //         console.log("taskItemColor3", element)
+    //         element.style.color = "initial";
+    //     })
+    // }
+
+    ////
+
+
+    const checkvalid = (a) => {
+        if (!inputValue || j.includes(a)) {
+            console.log('checkvalid is falses')
+            return false
+        }
+        console.log('checkvalid is true')
+        return true
+    }
+    console.log("tasks_SUBMIT:", tasks)
+
+    console.log('j', j)
+    console.log('g', g)
+
+    checkvalid()
+
+    let isValid = checkvalid(a)
+    console.log("isValid", isValid)
+
+    let include = newInText.includes(a)
+
+    console.log("include", include)
+    console.log("AInclud", a)
+
+
+
+
+    if (inputValue && include == false) {
+        inText = []
+
+
+        console.log("tasks1__if_--addEventListener('submit'--:", tasks)
+        let timeId = Date.now()
+
+        //const newTaskId = Number(`${tasks.length + 1}`)
+        // console.log("tasks.length_in_if:", tasks.length)
+        // console.log("newTaskId//", newTaskId)
+
+
+        const newTask = {
+            // id: `${newTaskId}`,
+            id: timeId,
+            completed: false,
+            text: `${inputValue}`,
+        }
+
+
+        // console.log("newcreatedNewTask", newTask)
+
+        // console.log("tasksBeforePush:", tasks)
+
+        tasks.push(newTask)
+
+        // console.log("tasksAfterPush:", tasks)
+        // console.log("tasks.length:", tasks.length)
+
+        // console.log("a", a)
+        // console.log("testBlockLen", testBlockLen)
+        // console.log("testBlock", testBlock)
+
+
+
+
+        inText = []
+
+
+
+        toDo()
+        //console.log("newArrayTask000000000000000000000000", newArrayTask)
+
+        //console.log(messBlock)
+
+        document.querySelectorAll(".error-message-block").forEach(e => e.parentNode.removeChild(e));
+
+        // testBlock.remove()
+
+    } else if (!inputValue) {
+
+        document.querySelectorAll(".error-message-block").forEach(e => e.parentNode.removeChild(e));
+        const spanEr = document.createElement("span")
+        spanEr.className = "error-message-block"
+        spanEr.innerText = "Введите данные"
+        divOne.append(spanEr)
+        //console.log("1")
+
+
+
+    } else if (include == true) {
+        //alert(`Такая задача ${a} уже есть`)
+        //divOne.remove()
+        //messBlock.remove()
+        inText = []
+        document.querySelectorAll(".error-message-block").forEach(e => e.parentNode.removeChild(e));
+        const spanEr = document.createElement("span")
+        spanEr.className = "error-message-block"
+        spanEr.innerText = `Такое название задачи: "${a}"  уже есть. `
+        divOne.append(spanEr)
+        //console.log("2")
+        //console.log("inText", inText)
+        //console.log("newInText", newInText)
+        //console.log("newTask2", newTask)
+        console.log("tasks", tasks)
+        inText = []
+        // newInText = []
+
+    }
+
+
+
+})
+const enteries = Object.entries(tasks)
+//console.log("enteries", enteries)
+
+
+
+
+//--function toDo()--//
+
+function toDo() {
+    // alert("toDo()")
+    const taskLists = document.querySelector(".tasks-list")
+    taskLists.innerText = ''
+
+    inText = []
+
+
+    newInText = []
+    //console.log("newInText_to_Do", newInText)
+    for (let i = 0; i < tasks.length; i++) {
+
+
+        let h = tasks[i]
+        // console.log("h", h)
+        const e = Object.values(h)
+        //console.log("inText", inText)
+        inText = []
+        //console.log("e[2]", e[2])
+        inText.push(e[2])
+        ////
+        // console.log("newInText1BeforePush", newInText)
+        newInText.push(e[2])
+
+
+        // console.log("inText", inText)
+
+
+
+        //console.log("newInText", newInText)
+
+        //console.log("e01", e[0][1])
+        console.log("newInText2", newInText)
+
+
+        const taskItem = document.createElement("div")
+        taskItem.className = "task-item"
+        taskItem.dataset.taskId = `${e[0]}`
+        // console.log("taskItem", taskItem)
+        taskLists.append(taskItem)
+
+        const divTaskItemMainContainer = document.createElement("div")
+        divTaskItemMainContainer.className = "task-item__main-container"
+        taskItem.append(divTaskItemMainContainer)
+        // console.log("div2", divTaskItemMainContainer)
+
+        const mainContent = document.createElement("div")
+        mainContent.className = "task-item__main-content"
+        divTaskItemMainContainer.append(mainContent)
+
+        const checkForm = document.createElement("form")
+        checkForm.className = "checkbox-form"
+        mainContent.append(checkForm)
+        //console.log("checkForm", checkForm)
+
+        const input = document.createElement("input")
+        input.className = "checkbox-form__checkbox"
+        input.type = "checkbox"
+        input.id = `task-${e[0]}`
+        checkForm.append(input)
+        // console.log("input", input)
+
+
+
+        const label = document.createElement("label")
+        label.htmlFor = `task-${e[0]}`
+        checkForm.append(label)
+        // console.log("label", label)
+
+        const span = document.createElement("span")
+        // span.className = "task-item__text"
+        span.className = `task-item__text-${e[0]}`
+        span.innerText = `${e[2]}`
+        mainContent.append(span)
+
+        const button = document.createElement("button")
+        button.className = "task-item__delete-button default-button delete-button"
+        button.id = "deleteBtn"
+        button.dataset.btnTaskId = `${e[0]}`
+        button.innerText = " Удалить"
+        divTaskItemMainContainer.append(button)
+
+        //const delBtn = document.querySelector("deleteBtn")
+        //console.log("delBtn", delBtn)
+
+
+    }
+    //console.log("inText", inText)
+    console.log("newInText3", newInText)
+
+    // let include = newInText.includes(a)
+
+    // console.log("include", include)
+    // console.log("AInclud", a)
+    /////////////////////////////////////////////////////////////////////////////
+    checkDark()
+
+    // if (isDark === true) {
+
+    //     const taskItemColor3 = document.querySelectorAll(".task-item")
+    //     console.log("taskItemColor3:", taskItemColor3)
+
+    //     const btnDark = document.querySelectorAll("button")
+    //     console.log("btnDark:", btnDark)
+
+
+
+
+
+    //     taskItemColor3.forEach((element) => {
+    //         console.log("taskItemColor3", element)
+    //         element.style.color = "#ffffff"
+    //     })
+
+    //     btnDark.forEach((element) => {
+    //         console.log("btnDark", element)
+    //         element.style.border = "1px solid #ffffff";
+
+    //     })
+
+    // } else {
+    //     taskItemColor3.forEach((element) => {
+    //         console.log("taskItemColor3", element)
+    //         element.style.color = "initial";
+    //     })
+
+    //     btnDark.forEach((element) => {
+    //         console.log("btnDark", element)
+    //         element.style.border = "none";
+
+    //     })
+    // }
+
+    ////////////////////////////////////
+}
+
+toDo()
+
+
+
+const delNav = document.querySelector("#deleteBtn")
+
+
+// //Актуальная ф-ция
+
+// div = Array.from(document.querySelectorAll('#deleteBtn'));
+// div.forEach((e) => {
+//     e.onclick = function () {
+//         const taskToDel = document.querySelector(`[data-task-id="${e.dataset.taskId}"]`)
+//         taskToDel.remove();
+//         console.log("this.dataset.taskId", e.dataset.taskId)
+//     }
+// });
+
+const taskList = document.querySelector(".tasks-list")
+console.log("taskListYep:", taskList)
+let testVar = 0
+
+
+
+const modalWindow = document.querySelector(".modal-overlay")
+console.log("modalWindow:", modalWindow)
+
+const modalDeleteBtn = document.querySelector("#modalDelBtn-2")
+console.log("modalDeleteBtn:", modalDeleteBtn)
+
+const modalCancelBtn = document.querySelector("#modalDelBtn-1")
+console.log("modalCancelBtn:", modalCancelBtn)
+
+
+
+////////////////////////////////////////////////////////////--Delete Container--//////////////////////////////////////////////////////
+
+taskList.addEventListener('click', (event) => {
+    const { target } = event
+    console.log("target:", target)
+
+
+
+    const cont = target.closest(".task-item")
+    console.log("cont:", cont)
+
+    const targetDataset = target.dataset
+    //console.log("targetDataset", targetDataset)
+    //console.log("targetDataset[0]:", targetDataset[0])
+
+    const tarDatOb = Object.values(targetDataset)
+    console.log("tarDatOb", tarDatOb)
+    const tarDataText = Object.values(targetDataset)
+    console.log("tarDatOb", tarDatOb)
+    testVar = tarDatOb
+
+    const btn = document.querySelector(`[data-btn-task-id = "${tarDatOb}"]`)
+    console.log("btn:", btn)
+
+    if (target == btn) {
+        modalWindow.className = "modal-overlay"
+
+        modalCancelBtn.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            modalWindow.className = "modal-overlay modal-overlay_hidden"
+            //alert("Cancel")
+            console.log("modalDeleteBtn:", modalDeleteBtn)
+
+        })
+
+
+
+
+        modalDeleteBtn.addEventListener('click', (event) => {
+            event.preventDefault()
+            //////
+
+            tasks.forEach((name) => {
+                console.log("name:", name)
+                const nameVal = Object.values(name)
+                console.log("nameVal:", nameVal)
+                console.log("nameVal[0]:", nameVal[0])
+                console.log("nameVal[2]:", nameVal[2])
+
+
+
+
+                const idToRemove2 = `${tarDatOb}`;
+                //console.log("idToRemove2", idToRemove2)
+
+                const lastIdToRemove = Number(idToRemove2)
+                console.log("lastIdToRemove", lastIdToRemove)
+
+                const taskFilter = tasks.filter((item) => item.id !== lastIdToRemove);
+
+                tasks = taskFilter
+
+                console.log("tasks:", tasks)
+                console.log("taskFilter", taskFilter)
+
+                //console.log("newInText", newInText)
+
+
+
+                console.log("tasksBefore:", tasks)
+                console.log("testVar", testVar)
+                const taskRem = `${testVar}`;
+                console.log("taskRem", taskRem)
+
+                const lastTaskRem = Number(taskRem)
+                console.log("lastTaskRem", lastTaskRem)
+
+                let newTaskFilter = tasks.filter((item) => item.id !== lastIdToRemove);
+
+                // tasks = taskFilter
+                tasks = newTaskFilter
+                console.log("tasksAfter:", tasks)
+                console.log("taskFilterAfter", newTaskFilter)
+
+
+
+
+
+
+                //
+                const spanVal = document.querySelector(`.task-item__text-${lastIdToRemove}`)
+                console.log("spanVal", spanVal)
+                console.log("spanVal.innerText", spanVal.innerText)
+
+
+                console.log("newInTextBeforeFilter: ", newInText)
+                newInText = newInText.filter((item) => item !== spanVal.innerText)
+                console.log("newInTextAfterFilter: ", newInText)
+                console.log("tasks: ", tasks)
+
+
+
+
+
+                let newArrayTask = []
+                let tasksClone = tasks
+                function taskReindex() {
+
+
+                    function contRemove() {
+                        cont.remove()
+                        modalWindow.className = "modal-overlay modal-overlay_hidden"
+                    }
+
+                    setTimeout(contRemove, 50)
+
+
+
+
+
+
+
+
+
+
+
+                    inText = []
+                    // console.log("tasks_before_newArrayTask", tasks)
+                    // tasks = newArrayTask
+                    // console.log("tasks_newArrayTask", tasks)
+                }
+
+                setTimeout(taskReindex, 90)
+
+            })
+
+            /////
+
+
+
+            //alert("Delete")
+            console.log("modalDeleteBtn:", modalDeleteBtn)
+
+        })
+
+
+
+
+
+
+    }
+
+
+})
+
+
+////////////////////////////////////////////////////////////////////
+// tasksClone.forEach((name, index) => {
+//     //console.log(`taskReindex_index: ${index}`)
+//     console.log(`tasksCloneFirst-${index}`, tasksClone)
+//     console.log(`name #${index}`, name)
+//     console.log(` tasksCloneBefore[${index}]`, tasksClone[index])
+//     let taskId = Object.values(tasksClone[index])
+//     console.log(" tasksCloneIdBeforeChange:", taskId[0])
+//     console.log(" taskId[2]:", taskId[2])
+//     taskId[0] = index
+//     console.log("tasksCloneIdAfterChange:", taskId[0])
+//     let numTask = Number(`${taskId[0] + 1}`)
+//     console.log("numTask:", numTask)
+
+//     console.log(` tasksCloneAfter[${index}]`, tasksClone[index])
+
+//     const newTaskFroClone = {
+//         // id: `${newTaskId}`,
+//         id: numTask,
+//         completed: false,
+//         text: `${taskId[2]}`,
+//     }
+//     newArrayTask.push(newTaskFroClone)
+//     console.log("newArrayTask", newArrayTask)
+
+
+//     console.log("tasks_before_newArrayTask", tasks)
+//     tasks = newArrayTask
+//     console.log("inText", inText)
+//     //console.log("newInText", newInText)
+//     console.log("newTaskFilterBefore", newTaskFilter)
+//     inText = []
+//     newTaskFilter = tasks
+
+//     console.log("newTaskFilterAfter", newTaskFilter)
+//     // if (newInText = {}) {
+//     //    // tasks = []
+//     // }
+//     let t = Date.now();
+//     console.log("t:", t)
+// })
+///////////////////////////////////////////////////////////////////////
+
+
+
+// const people = [
+//     { id: 1, name: 'serdar' },
+//     { id: 5, name: 'alex' },
+//     { id: 300, name: 'brittany' }
+// ];
+
+// const idToRemove = 5;
+
+// const filteredPeople = people.filter((item) => item.id !== idToRemove)
+// console.log("filteredPeople", filteredPeople)
+
+// //
+
+// let t = time();
+// console.log("t:", t)
+// let t = Date.now();
+// console.log("t:", t)
+
+
+
+// function contRemove() {
+//     let н = Date.now();
+//     console.log("н:", н)
+// }
+
+// setTimeout(contRemove, 1563)
